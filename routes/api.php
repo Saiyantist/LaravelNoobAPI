@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -62,7 +63,7 @@ Route::get('/posts/{post}/comments/{komento}', function (string $postId, string 
  *                                 Dep Inj   |     Params  |
  *                                           V             V
  */
-Route::get('/user/id/{id}', function (Request $request, string $id) {
+Route::get('/user/{id}', function (Request $request, string $id) {
     return 'User id: ' . $id;
 });
 
@@ -73,7 +74,7 @@ Route::get('/user/id/{id}', function (Request $request, string $id) {
  * not always present in url, then use `?` after param name
  * make sure to set a default value
  */
-Route::get('/user/name/{name?}', function (?string $name = 'Unnamed') {
+Route::get('/user/{name?}', function (?string $name = 'Unnamed') {
     return 'Username: ' . $name;
 });
 
@@ -111,7 +112,7 @@ Route::get('/user/name/{name?}', function (?string $name = 'Unnamed') {
  * `route` and `redirect` helper functions
  */
 Route::get('/user/{id}/profile/{name}', [UserController::class, 'show']
-)->name('profile');
+)->name('userProfile');
 
 
 // Route Groups
@@ -133,3 +134,17 @@ Route::get('/user/{id}/profile/{name}', [UserController::class, 'show']
  * ! FOR ME !
  * Apply the route grouping, prefixes, and name prefixes.
  */
+
+
+
+
+/**
+ * April 1, 2024
+ */
+
+Route::apiResource('photos', PhotoController::class);
+
+//  Route::apiResources([
+//     'photos' => PhotoController::class,
+//     'posts' => PhotoController::class
+// ]);
