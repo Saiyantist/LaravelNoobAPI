@@ -33,19 +33,20 @@ Route::post('/tony', function () {
 });
 
 /**
- * Activity 1
+ * Activity 1 & 2
  */
-
-Route::controller(SimpleController::class)->prefix('simple')->group(function (){
-    Route::get('/users', 'index');
-    Route::post('/users', 'store');
-    Route::put('/users/{id}', 'edit');
-    Route::patch('/users/{id}', 'update');
-    Route::delete('/users/{id}', 'destroy');
+Route::middleware('check.token')->group(function () {
+    Route::controller(SimpleController::class)->prefix('simple')->group(function (){
+        Route::get('/users', 'index');
+        Route::post('/users', 'store');
+        Route::put('/users/{id}', 'edit');
+        Route::patch('/users/{id}', 'update');
+        Route::delete('/users/{id}', 'destroy');
+    });
 });
 
 
-Route::match(['get', 'post', 'patch', 'put'], '/match' , function () {
+Route::match(['get', 'post', 'patch', 'put', 'delete'], '/match' , function () {
     return "I can match get, post, patch, put, and delete..";
 });
 
@@ -56,3 +57,4 @@ Route::match(['get', 'post', 'patch', 'put'], '/match' , function () {
 // Route::get('/users', function (Request $request) {
 //     return $request->name . ' - ' . $request->email;
 // });
+
