@@ -16,6 +16,7 @@ class EnsureTokenIsValid
     public function handle(Request $request, Closure $next): Response
     {
         $token = $request->bearerToken();
+        // $token = 'shorts';
 
         if(!$token){
             return response()->json(["error" => "Unauthorized"], 401);
@@ -27,5 +28,6 @@ class EnsureTokenIsValid
 
         return $next($request);
         // return response()->json($token);
+        // return response()->json('tae');
     }
 }

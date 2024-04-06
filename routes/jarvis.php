@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SimpleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -36,12 +37,24 @@ Route::post('/tony', function () {
  * Activity 1 & 2
  */
 Route::middleware('check.token')->group(function () {
+
     Route::controller(SimpleController::class)->prefix('simple')->group(function (){
         Route::get('/users', 'index');
         Route::post('/users', 'store');
         Route::put('/users/{id}', 'edit');
         Route::patch('/users/{id}', 'update');
         Route::delete('/users/{id}', 'destroy');
+    });
+
+    /**
+     * Activity 3
+     */
+    Route::controller(ProductController::class)->prefix('products')->group(function () {
+        Route::get('/', 'index');
+        Route::get('/{id}', 'show');
+        Route::patch('/{id}', 'update');
+        Route::delete('/{id}', 'destroy');
+        Route::post('/create', 'store');
     });
 });
 
@@ -57,4 +70,5 @@ Route::match(['get', 'post', 'patch', 'put', 'delete'], '/match' , function () {
 // Route::get('/users', function (Request $request) {
 //     return $request->name . ' - ' . $request->email;
 // });
+
 
