@@ -49,13 +49,19 @@ Route::middleware('check.token')->group(function () {
     /**
      * Activity 3
      */
-    Route::controller(ProductController::class)->prefix('products')->group(function () {
-        Route::get('/', 'index');
-        Route::get('/{id}', 'show');
-        Route::patch('/{id}', 'update');
-        Route::delete('/{id}', 'destroy');
-        Route::post('/create', 'store');
-    });
+
+    // Route::controller(ProductController::class)->prefix('products')->group(function () {
+    //     Route::get('/', 'index');
+    //     Route::get('/{id}', 'show');
+    //     Route::patch('/{id}', 'update');
+    //     Route::delete('/{id}', 'destroy');
+    //     Route::post('/create', 'store');
+    // });
+
+    /**
+     * Missed Step 😅 sayangg
+     */
+    Route::apiResource('products', ProductController::class);
 });
 
 
