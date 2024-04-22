@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -148,3 +149,29 @@ Route::apiResource('photos', PhotoController::class);
 //     'photos' => PhotoController::class,
 //     'posts' => PhotoController::class
 // ]);
+
+
+
+
+/**
+ * April 22, 2024
+ */
+
+
+// Responses
+
+Route::get('/response', function (){
+    return response('Hello Worldsky', 200)->header('Content-Type', 'text/plain');
+});
+
+Route::get('/response/json', function (){
+    return response()->json([
+        'name' => 'Abigail',
+        'state' => 'CA',
+    ]);
+});
+
+Route::get('/post/create', [PostController::class, 'create']);
+Route::post('/post', [PostController::class, 'store']);
+
+
