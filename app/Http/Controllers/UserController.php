@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -35,9 +36,10 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        // $user = User::where('id','==', auth()->id());
 
+        // return $request()->$user->id;
+    }
     /**
      * Remove the specified resource from storage.
      */
