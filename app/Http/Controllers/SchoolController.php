@@ -9,9 +9,12 @@ use Illuminate\Support\Collection;
 
 class SchoolController extends Controller
 {
+
+    public $students;
     
     public function index ()
     {
+        $students = $this->students;
         $students = DB::table('students')->get();
     
         // $students = DB::table('students')->where('grade', 10)->first();

@@ -4,6 +4,7 @@
     <h2>Select all from Students</h2>
 
     
+    @if(isset($students))
         
     <table style="border-collapse: collapse; border: 2px solid black; ">
         <tr style="border: 1px solid black;">
@@ -30,6 +31,7 @@
 
     </table>
 
+    @endif
     
 </div>
 
