@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SimpleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -77,4 +78,17 @@ Route::match(['get', 'post', 'patch', 'put', 'delete'], '/match' , function () {
 //     return $request->name . ' - ' . $request->email;
 // });
 
+
+
+
+/**
+ * May 20, 2024
+ * 
+ * Model, Factories, Migration, Seeders
+ * https://docs.google.com/document/d/16hQ482aHYfKmaK_17VhfZrcAjTCmXLNsCfE5nkU6xko/edit
+ * 
+ */
+
+ Route::get('/students', [StudentController::class, 'index'])->name('students.index');
+ Route::get('/students/{id}', [StudentController::class, 'show'])->name('students.show');
 
